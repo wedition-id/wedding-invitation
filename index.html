@@ -1,43 +1,267 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wedding Invitation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4e5c9">
+  <title>The Wedding of Arjun &amp; Siya</title>
   <style>
-    body {
-      background: #f5eee6;
-      color: #755d4c;
-      font-family: Georgia, serif;
-      text-align: center;
-      padding: 50px 20px;
+    :root {
+      --cream: #f7edd9;
+      --gold: #b7833f;
+      --maroon: #68151f;
+      --ink: #422a1b;
+      --paper: #fffaf0;
     }
-    button {
-      padding: 12px 24px;
-      border: 0;
-      border-radius: 25px;
-      background: #8a7160;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      text-align: center;
+    }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .cover-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 0;
+      background: var(--cream);
+    }
+    .cover-image { display: block; width: 100%; height: auto; }
+    .cover-action {
+      position: absolute;
+      left: 50%;
+      bottom: 4.5%;
+      transform: translateX(-50%);
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    .button {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      border-radius: 999px;
+      padding: 13px 24px;
       color: white;
+      background: var(--maroon);
+      text-decoration: none;
+      font: 600 14px/1.2 Arial, sans-serif;
+      cursor: pointer;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button.secondary { background: transparent; color: var(--maroon); }
+    .section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 52px 22px;
+      background: var(--paper);
+      border-top: 1px solid rgba(183,131,63,.35);
+    }
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font: 12px/1.6 Arial, sans-serif;
+    }
+    h1, h2 { color: var(--maroon); font-weight: normal; }
+    h1 { font-size: clamp(32px, 7vw, 54px); margin: 12px 0; }
+    h2 { font-size: clamp(27px, 6vw, 38px); margin: 8px 0 18px; }
+    p { line-height: 1.8; }
+    .names { font-size: 25px; color: var(--maroon); }
+    .date { font-size: 22px; color: var(--maroon); margin: 18px 0; }
+    .countdown {
+      display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;
+      margin: 26px 0;
+    }
+    .countdown div {
+      min-width: 72px; padding: 13px 9px;
+      border: 1px solid rgba(183,131,63,.55); border-radius: 12px;
+      background: #fffdf7;
+    }
+    .countdown strong { display: block; color: var(--maroon); font-size: 25px; }
+    .countdown span { font: 10px Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; }
+    .details-card {
+      border: 1px solid rgba(183,131,63,.5);
+      border-radius: 18px; padding: 22px; margin: 18px auto; max-width: 500px;
+    }
+    .actions { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+    .footer { padding: 28px 18px; color: #7e5a35; font-size: 13px; }
+    .music-button {
+      position: fixed; z-index: 5; right: 15px; bottom: 15px;
+      width: 48px; height: 48px; border: 1px solid var(--gold);
+      border-radius: 50%; background: var(--maroon); color: white;
+      font-size: 20px; cursor: pointer; box-shadow: 0 4px 16px #0002;
+    }
+    .small { font-size: 13px; opacity: .8; }
+    @media (max-width: 480px) {
+      .cover-action { bottom: 3%; }
+      .button { padding: 12px 18px; font-size: 13px; }
+      .section { padding: 40px 18px; }
     }
   </style>
 </head>
 <body>
-  <p>THE WEDDING OF</p>
-  <h1>Aditya &amp; Anindya</h1>
-  <p>Kepada Yth.</p>
-  <h2 id="guest">Tamu Undangan</h2>
-  <button onclick="alert('Selamat datang di undangan kami!')">
-    Buka Undangan
-  </button>
+  <!-- Cover Canva. Ganti file assets/cover-undangan.png jika desainnya berubah. -->
+  <header class="cover-wrap" id="cover">
+    <img class="cover-image" src="assets/cover-undangan.png" alt="Cover undangan pernikahan Arjun dan Siya">
+    <div class="cover-action">
+      <a class="button" href="#undangan" id="openInvitation">Buka Undangan</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="undangan">
+      <div class="eyebrow">Together with our families</div>
+      <h1>The Wedding Of</h1>
+      <div class="names"><span id="bridegroom">Arjun</span> <em>&amp;</em> <span id="bride">Siya</span></div>
+      <p>Dengan penuh kebahagiaan, kami mengundang Anda untuk hadir dan memberikan doa restu pada hari istimewa kami.</p>
+      <div class="date" id="weddingDateText">Minggu, 20 Desember 2026</div>
+      <div class="countdown" aria-label="Hitung mundur pernikahan">
+        <div><strong id="days">--</strong><span>Hari</span></div>
+        <div><strong id="hours">--</strong><span>Jam</span></div>
+        <div><strong id="minutes">--</strong><span>Menit</span></div>
+        <div><strong id="seconds">--</strong><span>Detik</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="acara">
+      <div class="eyebrow">Save the date</div>
+      <h2>Detail Acara</h2>
+      <div class="details-card">
+        <h2>Akad / Pemberkatan</h2>
+        <p><strong id="ceremonyDate">Minggu, 20 Desember 2026</strong></p>
+        <p id="ceremonyTime">08.00 WITA – selesai</p>
+        <p id="venueName">Nama Gedung / Lokasi Acara</p>
+        <p id="venueAddress">Alamat lengkap lokasi pernikahan ditulis di sini.</p>
+        <a class="button secondary" id="mapsButton" href="https://maps.google.com/" target="_blank" rel="noopener">Buka Google Maps</a>
+      </div>
+      <div class="details-card">
+        <h2>Resepsi</h2>
+        <p id="receptionTime">11.00 WITA – selesai</p>
+        <p id="receptionNote">Kami akan sangat berbahagia atas kehadiran Anda.</p>
+      </div>
+    </section>
+
+    <section class="section" id="rsvp">
+      <div class="eyebrow">Your presence is a blessing</div>
+      <h2>Konfirmasi Kehadiran</h2>
+      <p>Mohon bantu kami menyiapkan acara dengan mengonfirmasi kehadiran melalui tombol berikut.</p>
+      <div class="actions">
+        <a class="button" id="rsvpButton" href="https://forms.google.com/" target="_blank" rel="noopener">Isi RSVP</a>
+        <a class="button secondary" href="#ucapan">Kirim Ucapan</a>
+      </div>
+      <p class="small">Tautan RSVP perlu diganti dengan tautan Google Form milikmu.</p>
+    </section>
+
+    <section class="section" id="ucapan">
+      <div class="eyebrow">With love</div>
+      <h2>Terima Kasih</h2>
+      <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Anda berkenan hadir dan memberikan doa restu.</p>
+      <p class="names"><span id="closingNames">Arjun &amp; Siya</span></p>
+    </section>
+  </main>
+
+  <button class="music-button" id="musicButton" type="button" aria-label="Putar atau jeda musik" title="Putar / jeda musik">♫</button>
+  <audio id="weddingMusic" loop preload="none">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <footer class="footer">Dibuat dengan penuh cinta ♥</footer>
 
   <script>
-    const params = new URLSearchParams(location.search);
-    const guest = params.get("to");
+    /*
+      UBAH INFORMASI DI BAGIAN INI:
+      - nama mempelai
+      - tanggal dan jam acara
+      - lokasi dan alamat
+      - tautan Google Maps
+      - tautan Google Form untuk RSVP
+    */
+    const CONFIG = {
+      groom: "Arjun",
+      bride: "Siya",
+      // Format tanggal ISO dengan zona waktu WITA (+08:00), contoh: 2027-06-12T08:00:00+08:00
+      weddingDate: "2026-12-20T08:00:00+08:00",
+      ceremonyTime: "08.00 WITA – selesai",
+      receptionTime: "11.00 WITA – selesai",
+      venueName: "Nama Gedung / Lokasi Acara",
+      venueAddress: "Alamat lengkap lokasi pernikahan ditulis di sini.",
+      mapsUrl: "https://maps.google.com/",
+      rsvpUrl: "https://forms.google.com/"
+    };
 
-    if (guest) {
-      document.getElementById("guest").textContent = guest;
+    const params = new URLSearchParams(window.location.search);
+    const guestName = params.get("to");
+    const groomEl = document.getElementById("bridegroom");
+    const brideEl = document.getElementById("bride");
+    groomEl.textContent = CONFIG.groom;
+    brideEl.textContent = CONFIG.bride;
+    document.getElementById("closingNames").textContent = CONFIG.groom + " & " + CONFIG.bride;
+    document.title = "The Wedding of " + CONFIG.groom + " & " + CONFIG.bride;
+    if (guestName) {
+      const cleanName = guestName.replace(/[<>]/g, "").trim();
+      const greeting = document.createElement("p");
+      greeting.className = "names";
+      greeting.textContent = "Kepada Yth. " + cleanName;
+      document.getElementById("undangan").insertBefore(greeting, document.getElementById("undangan").querySelector("p"));
     }
+
+    const date = new Date(CONFIG.weddingDate);
+    const dateFormat = new Intl.DateTimeFormat("id-ID", {
+      weekday: "long", day: "numeric", month: "long", year: "numeric",
+      timeZone: "Asia/Makassar"
+    });
+    document.getElementById("weddingDateText").textContent = dateFormat.format(date);
+    document.getElementById("ceremonyDate").textContent = dateFormat.format(date);
+    document.getElementById("ceremonyTime").textContent = CONFIG.ceremonyTime;
+    document.getElementById("receptionTime").textContent = CONFIG.receptionTime;
+    document.getElementById("venueName").textContent = CONFIG.venueName;
+    document.getElementById("venueAddress").textContent = CONFIG.venueAddress;
+    document.getElementById("mapsButton").href = CONFIG.mapsUrl;
+    document.getElementById("rsvpButton").href = CONFIG.rsvpUrl;
+
+    function updateCountdown() {
+      const remaining = date.getTime() - Date.now();
+      if (remaining <= 0) {
+        ["days", "hours", "minutes", "seconds"].forEach(id => document.getElementById(id).textContent = "0");
+        document.getElementById("days").textContent = "♥";
+        return;
+      }
+      document.getElementById("days").textContent = Math.floor(remaining / 86400000);
+      document.getElementById("hours").textContent = Math.floor((remaining % 86400000) / 3600000);
+      document.getElementById("minutes").textContent = Math.floor((remaining % 3600000) / 60000);
+      document.getElementById("seconds").textContent = Math.floor((remaining % 60000) / 1000);
+    }
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const music = document.getElementById("weddingMusic");
+    const musicButton = document.getElementById("musicButton");
+    let musicStarted = false;
+    async function toggleMusic() {
+      try {
+        if (music.paused) {
+          await music.play();
+          musicStarted = true;
+          musicButton.textContent = "Ⅱ";
+          musicButton.setAttribute("aria-label", "Jeda musik");
+        } else {
+          music.pause();
+          musicButton.textContent = "♫";
+          musicButton.setAttribute("aria-label", "Putar musik");
+        }
+      } catch (error) {
+        alert("Musik belum bisa diputar. Pastikan file music.mp3 sudah diunggah ke folder yang sama dengan index.html.");
+      }
+    }
+    musicButton.addEventListener("click", toggleMusic);
+    document.getElementById("openInvitation").addEventListener("click", () => {
+      if (!musicStarted) toggleMusic();
+    });
   </script>
 </body>
 </html>

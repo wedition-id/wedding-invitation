@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wedding Invitation</title>
+  <style>
+    body {
+      background: #f5eee6;
+      color: #755d4c;
+      font-family: Georgia, serif;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    button {
+      padding: 12px 24px;
+      border: 0;
+      border-radius: 25px;
+      background: #8a7160;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <p>THE WEDDING OF</p>
+  <h1>Aditya &amp; Anindya</h1>
+  <p>Kepada Yth.</p>
+  <h2 id="guest">Tamu Undangan</h2>
+  <button onclick="alert('Selamat datang di undangan kami!')">
+    Buka Undangan
+  </button>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const guest = params.get("to");
+
+    if (guest) {
+      document.getElementById("guest").textContent = guest;
+    }
+  </script>
+</body>
+</html>
